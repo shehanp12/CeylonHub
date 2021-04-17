@@ -4,10 +4,13 @@ import {fade, makeStyles} from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
 
-appbar:{
+buttonStyle: {
+    color:'white',
+    fontFamily:'Varela Round',
+    fontWeight:'bold'
 
 
-},
+    },
 
     grow: {
         flexGrow: 1,
@@ -30,7 +33,10 @@ appbar:{
     logo:{
         width:'40px'
     },
+   inputBase:{
+        width:'900px'
 
+   },
 
     search: {
         position: 'relative',
@@ -41,7 +47,8 @@ appbar:{
         },
         marginRight: theme.spacing(2),
         marginLeft: 0,
-        width: '100%',
+
+
         [theme.breakpoints.up('sm')]: {
             marginLeft: theme.spacing(3),
             width: 'auto',
