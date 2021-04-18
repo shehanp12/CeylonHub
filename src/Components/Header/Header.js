@@ -92,7 +92,7 @@ const Header =() => {
                     <div className={classes.sectionDesktop}>
                         <Button className={classes.buttonStyle} variant="h6" onClick={setOpenPopup}>Join </Button>
                         <Popup
-                            title="Employee Form"
+                            title="Join CeylonHub"
                             openPopup={openPopup}
                             setOpenPopup={setOpenPopup}
                         >
