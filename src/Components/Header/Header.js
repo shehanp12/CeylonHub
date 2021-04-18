@@ -10,7 +10,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import useStyles from './style';
 import logo from '../../images/shopping-cart.png';
-import {Button} from "@material-ui/core";
+import {Button, Modal} from "@material-ui/core";
 
 
 
@@ -19,13 +19,20 @@ const Header =() => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+    const [open, setOpen] = React.useState(false);
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-    const handleProfileMenuOpen = (event) => {
-        setAnchorEl(event.currentTarget);
+    const handleOpen = () => {
+        setOpen(true);
     };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+
 
     const handleMobileMenuClose = () => {
         setMobileMoreAnchorEl(null);
@@ -36,9 +43,17 @@ const Header =() => {
         handleMobileMenuClose();
     };
 
-    const handleMobileMenuOpen = (event) => {
-        setMobileMoreAnchorEl(event.currentTarget);
-    };
+    const body = (
+        <div  className={classes.paper}>
+            <h2 id="simple-modal-title">Text in a modal</h2>
+            <p id="simple-modal-description">
+              Hello World
+            </p>
+
+        </div>
+    );
+
+
 
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
@@ -55,22 +70,7 @@ const Header =() => {
         </Menu>
     );
 
-    const mobileMenuId = 'primary-search-account-menu-mobile';
-    const renderMobileMenu = (
-        <Menu
-            anchorEl={mobileMoreAnchorEl}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-            id={mobileMenuId}
-            keepMounted
-            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-            open={isMobileMenuOpen}
-            onClose={handleMobileMenuClose}
-        >
 
-
-
-        </Menu>
-    );
 
     return (
         <div className={classes.grow } >
@@ -96,8 +96,16 @@ const Header =() => {
                     </div>
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
-                        <Button className={classes.buttonStyle} variant="h6">Join </Button>
-                        <Button className={classes.buttonStyle} variant="h6">Login</Button>
+                        <Button className={classes.buttonStyle} variant="h6" onClick={handleOpen}>Join </Button>
+                        <Modal
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="simple-modal-title"
+                            aria-describedby="simple-modal-description"
+                        >
+                            {body}
+                        </Modal>
+                        <Button className={classes.buttonStyle} variant="h6" >Login</Button>
                         <IconButton aria-label="show 17 new notifications" color="inherit">
                             <Badge badgeContent={17} color="secondary">
                                 <ShoppingCartIcon />
@@ -110,7 +118,7 @@ const Header =() => {
 
                 </Toolbar>
             </AppBar>
-            {renderMobileMenu}
+
             {renderMenu}
         </div>
     )

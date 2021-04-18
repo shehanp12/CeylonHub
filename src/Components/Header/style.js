@@ -10,7 +10,7 @@ buttonStyle: {
     fontWeight:'bold'
 
 
-    },
+},
 
     grow: {
         flexGrow: 1,
