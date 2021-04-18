@@ -10,7 +10,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import useStyles from './style';
 import logo from '../../images/shopping-cart.png';
-import {Button, Modal} from "@material-ui/core";
+import {Button} from "@material-ui/core";
+import Popup from "../Popup/Popup";
 
 
 
@@ -20,9 +21,11 @@ const Header =() => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
     const [open, setOpen] = React.useState(false);
+    const [openPopup, setOpenPopup] = React.useState(false);
 
     const isMenuOpen = Boolean(anchorEl);
-    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+
 
     const handleOpen = () => {
         setOpen(true);
@@ -43,15 +46,6 @@ const Header =() => {
         handleMobileMenuClose();
     };
 
-    const body = (
-        <div  className={classes.paper}>
-            <h2 id="simple-modal-title">Text in a modal</h2>
-            <p id="simple-modal-description">
-              Hello World
-            </p>
-
-        </div>
-    );
 
 
 
@@ -96,15 +90,14 @@ const Header =() => {
                     </div>
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
-                        <Button className={classes.buttonStyle} variant="h6" onClick={handleOpen}>Join </Button>
-                        <Modal
-                            open={open}
-                            onClose={handleClose}
-                            aria-labelledby="simple-modal-title"
-                            aria-describedby="simple-modal-description"
+                        <Button className={classes.buttonStyle} variant="h6" onClick={setOpenPopup}>Join </Button>
+                        <Popup
+                            title="Employee Form"
+                            openPopup={openPopup}
+                            setOpenPopup={setOpenPopup}
                         >
-                            {body}
-                        </Modal>
+                        </Popup>
+
                         <Button className={classes.buttonStyle} variant="h6" >Login</Button>
                         <IconButton aria-label="show 17 new notifications" color="inherit">
                             <Badge badgeContent={17} color="secondary">
